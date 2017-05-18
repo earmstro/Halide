@@ -1,3 +1,5 @@
+#define VAR_GEN 1
+
 #include <iostream>
 #include <set>
 #include <sstream>
@@ -55,6 +57,7 @@
 #include "UnifyDuplicateLets.h"
 #include "UniquifyVariableNames.h"
 #include "UnrollLoops.h"
+#include "Variations.h"
 #include "VaryingAttributes.h"
 #include "VectorizeLoops.h"
 #include "WrapCalls.h"
@@ -102,6 +105,14 @@ Stmt lower(const vector<Function> &output_funcs, const string &pipeline_name,
     debug(1) << "Creating initial loop nests...\n";
     Stmt s = schedule_functions(outputs, order, env, t, any_memoized);
     debug(2) << "Lowering after creating initial loop nests:\n" << s << '\n';
+
+
+    debug(1) << "printout of s:\n" << s << "\n";
+    #ifdef VAR_GEN
+    debug(1) << "Generating program variants...\n";
+    s = generate_variants(s);
+    debug(2) << "Finished vargen";
+    #endif
 
     debug(1) << "Canonicalizing GPU var names...\n";
     s = canonicalize_gpu_vars(s);

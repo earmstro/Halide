@@ -376,6 +376,7 @@ SOURCE_FILES = \
   UnrollLoops.cpp \
   Util.cpp \
   Var.cpp \
+  Variations.cpp \
   VaryingAttributes.cpp \
   VectorizeLoops.cpp \
   WrapCalls.cpp
@@ -509,6 +510,7 @@ HEADER_FILES = \
   UnrollLoops.h \
   Util.h \
   Var.h \
+  Variations.h \
   VaryingAttributes.h \
   VectorizeLoops.h \
   WrapCalls.h
